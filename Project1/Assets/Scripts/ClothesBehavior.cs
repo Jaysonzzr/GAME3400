@@ -21,6 +21,8 @@ public class ClothesBehavior : MonoBehaviour
     {
         dressed = false;
 
+        gameObject.layer = 0; // Make it visible in the main camera
+
         if (collected)
         {
             transform.SetParent(GameObject.FindGameObjectWithTag("ClothesBox").transform);
@@ -34,6 +36,8 @@ public class ClothesBehavior : MonoBehaviour
     public void DressOn()
     {
         dressed = true;
+
+        gameObject.layer = 6; // Make it invisible in the main camera
 
         transform.SetParent(GameObject.FindGameObjectWithTag("Player").transform);
 
