@@ -7,11 +7,17 @@ public class CameraController : MonoBehaviour
     public float sensitivity = 2.0f;
     public float smoothing = 2.0f;
 
+    public float duckHeight = 0.5f;
+    public float duckSpeed = 2f;
+
     GameObject player;
     Vector3 offset;
 
     Vector2 mouseLook;
     Vector2 smoothV;
+
+    float originalCameraY;
+    float targetCameraY;
 
     void Start()
     {
@@ -21,6 +27,9 @@ public class CameraController : MonoBehaviour
         
         player = GameObject.FindGameObjectWithTag("Player");
         offset = transform.position - player.transform.position;
+
+        originalCameraY = transform.localPosition.y;
+        targetCameraY = originalCameraY;
     }
 
     void Update()
@@ -39,7 +48,22 @@ public class CameraController : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         player.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, player.transform.up);
 
-        // Move the camera to follow the player
-        transform.position = player.transform.position + offset;
+        Duck();
+    }
+
+    void Duck()
+    {
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            targetCameraY = originalCameraY - duckHeight;
+        }
+        else
+        {
+            targetCameraY = originalCameraY;
+        }
+
+        Vector3 cameraPosition = transform.localPosition;
+        cameraPosition.y = Mathf.Lerp(cameraPosition.y, targetCameraY, duckSpeed * Time.deltaTime);
+        transform.localPosition = cameraPosition;
     }
 }

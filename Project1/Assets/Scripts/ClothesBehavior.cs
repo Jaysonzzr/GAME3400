@@ -22,6 +22,7 @@ public class ClothesBehavior : MonoBehaviour
         dressed = false;
 
         gameObject.layer = 0; // Make it visible in the main camera
+        gameObject.GetComponent<MeshCollider>().enabled = true;
 
         if (collected)
         {
@@ -38,6 +39,7 @@ public class ClothesBehavior : MonoBehaviour
         dressed = true;
 
         gameObject.layer = 6; // Make it invisible in the main camera
+        gameObject.GetComponent<MeshCollider>().enabled = false;
 
         transform.SetParent(GameObject.FindGameObjectWithTag("Player").transform);
 
