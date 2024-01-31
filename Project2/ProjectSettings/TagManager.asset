@@ -9,6 +9,7 @@ TagManager:
   - Window
   - Trap
   - Real
+  - Exit
   layers:
   - Default
   - TransparentFX

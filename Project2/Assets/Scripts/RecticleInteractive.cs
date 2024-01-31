@@ -40,7 +40,7 @@ public class RecticleInteractive : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
             GameObject hitObject = hit.transform.gameObject;
-            if (hitObject.CompareTag("Key") || hitObject.CompareTag("Trap") || hitObject.CompareTag("Window") || hitObject.CompareTag("Real"))
+            if (hitObject.CompareTag("Key") || hitObject.CompareTag("Trap") || hitObject.CompareTag("Window") || hitObject.CompareTag("Real") || hitObject.CompareTag("Exit"))
             {
                 float distance = Vector3.Distance(transform.position, hitObject.transform.position);
                 if (distance <= maxDistance)
@@ -65,6 +65,33 @@ public class RecticleInteractive : MonoBehaviour
                                 openDoor = true;
 
                                 GameObject.FindGameObjectWithTag("Real").tag = "Untagged";
+                            }
+                            else
+                            {
+                                GameObject.Find("LightManager").GetComponent<LightManager>().OnDoorInteraction();
+                            }
+                        }
+                    }
+
+                    if (hitObject.CompareTag("Trap"))
+                    {
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            GameObject.Find("LightManager").GetComponent<LightManager>().OnDoorInteraction();
+                        }
+                    }
+
+                    if (hitObject.CompareTag("Exit"))
+                    {
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            if (getKey)
+                            {
+                                GameObject.Find("LightManager").GetComponent<LightManager>().TurnOffAllLights();
+                            }
+                            else
+                            {
+                                GameObject.Find("LightManager").GetComponent<LightManager>().OnDoorInteraction();
                             }
                         }
                     }
