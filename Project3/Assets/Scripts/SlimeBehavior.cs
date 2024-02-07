@@ -6,8 +6,7 @@ public class SlimeBehavior : MonoBehaviour
 {
     public Transform player;
     public float moveSpeed = 10;
-    public float minDistance = 2;
-    public int damageAmount = 20;
+    public GameObject miniSlimes;
     public int maxHealth = 20;
 
     public int currentHealth;
@@ -19,10 +18,14 @@ public class SlimeBehavior : MonoBehaviour
 
     private float back = 1;
     private float counterForBack;
+
+    private int damageAmount;
     private void Start()
     {
+        player = GameObject.FindWithTag("Player").transform;
         counter = hitDelay;
         currentHealth = maxHealth;
+        damageAmount = 1;
     }
 
     // Update is called once per frame
@@ -56,21 +59,55 @@ public class SlimeBehavior : MonoBehaviour
             canHit = false;
             counter = 0;
             var playerController = other.gameObject.GetComponent<PlayerController>();
-            playerController.TakeDamage(1);
+            playerController.TakeDamage(damageAmount);
             wasHit = true;
             counterForBack = 0;
         }
     }
 
+    public void SetDamage(int set)
+    {
+        damageAmount = set;
+    }
+
+    public void SetMaxHealth(int set)
+    {
+        maxHealth = set;
+        currentHealth = maxHealth;
+    }
+
+    public void SetSpeed(float set)
+    {
+        moveSpeed = set;
+    }
     public void TakeDamage(int damage)
     {
         counterForBack = 0;
         currentHealth -= damage;
         wasHit = true;
 
-        if (currentHealth <= maxHealth / 2)
+        if (currentHealth <= 0)
         {
-            // SPLIT
+            Destroy(gameObject);
+            return;
+        }
+
+        if (currentHealth <= maxHealth / 2 && maxHealth > 2)
+        {
+            GameObject slime1 = Instantiate(miniSlimes, transform.position, transform.rotation);
+            GameObject slime2 = Instantiate(miniSlimes, new Vector3(transform.position.x + 1, transform.position.y, 
+                transform.position.z + 1), transform.rotation);
+            slime1.GetComponent<SlimeBehavior>().SetDamage(damageAmount + 1);
+            slime1.GetComponent<SlimeBehavior>().SetMaxHealth(maxHealth / 4);
+            slime1.GetComponent<SlimeBehavior>().SetSpeed(moveSpeed * 2);
+            slime1.transform.localScale -= new Vector3(1f, 0, 1);
+            
+            slime2.GetComponent<SlimeBehavior>().SetDamage(damageAmount + 1);
+            slime2.GetComponent<SlimeBehavior>().SetMaxHealth(maxHealth / 4);
+            slime2.GetComponent<SlimeBehavior>().SetSpeed(moveSpeed * 2);
+            slime2.transform.localScale -= new Vector3(1f, 0, 1);
+            
+            Destroy(gameObject);
         }
     }
 }
