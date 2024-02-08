@@ -8,6 +8,7 @@ public class SlimeBehavior : MonoBehaviour
     public float moveSpeed = 10;
     public GameObject miniSlimes;
     public int maxHealth = 20;
+    
 
     public int currentHealth;
 
@@ -39,13 +40,13 @@ public class SlimeBehavior : MonoBehaviour
 
         if (wasHit && counterForBack < back)
         {
-            transform.LookAt(player);
-            transform.position = Vector3.MoveTowards(transform.position, player.position, -moveSpeed * Time.deltaTime);
+            //transform.LookAt(player);
+            //transform.position = Vector3.MoveTowards(transform.position, player.position, -moveSpeed * Time.deltaTime);
         }
         else
         {
-            transform.LookAt(player);
-            transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            //transform.LookAt(player);
+            //transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
 
         }
         counter += Time.deltaTime;

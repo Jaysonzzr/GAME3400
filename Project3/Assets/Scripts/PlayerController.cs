@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10;
     public float gravity = 9.81f;
+    public GameObject sword;
 
     CharacterController controller;
     Vector3 input, moveDirection;
@@ -42,6 +43,21 @@ public class PlayerController : MonoBehaviour
             sword_attack = true;
             
             elapsedTime = 0.0f;
+        }
+
+        if (elapsedTime <= swipeRate / 2 && sword_attack)
+        {
+            sword.transform.localPosition = Vector3.Lerp(sword.transform.localPosition,
+                new Vector3(0, sword.transform.localPosition.y, sword.transform.localPosition.z), 0.5f * Time.deltaTime);
+        } else if (elapsedTime <= swipeRate)
+        {
+            sword.transform.localPosition = Vector3.Lerp(sword.transform.localPosition,
+                new Vector3(0.25f, sword.transform.localPosition.y, sword.transform.localPosition.z), 0.5f * Time.deltaTime);
+        } else
+        {
+            sword_attack = false;
+            sword.transform.localPosition =
+                new Vector3(0.25f, sword.transform.localPosition.y, sword.transform.localPosition.z);
         }
 
         elapsedTime += Time.deltaTime;

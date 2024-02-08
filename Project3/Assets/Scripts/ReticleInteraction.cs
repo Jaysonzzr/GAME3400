@@ -24,6 +24,8 @@ public class ReticleInteraction : MonoBehaviour
                     bookText.SetActive(false);
                     reading = false;
                 }
+
+                return;
             }
     
             RaycastHit hit;
@@ -38,6 +40,7 @@ public class ReticleInteraction : MonoBehaviour
                         infoText.text = hitObject.name + " (E)";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
+                            infoText.text = "";
                             bookText.SetActive(true);
                             reading = true;
                         }
