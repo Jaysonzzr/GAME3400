@@ -3,7 +3,22 @@ guid: 88a603c0a90f742c89ea057d199a3b85
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Archisketch_199689_Frame
+    second: {fileID: 2100000, guid: cca0c264490e9463f86e0cefecff5abd, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Archisketch_199689_Frame_baseColor
+    second: {fileID: 2800000, guid: d19eb9916c0b041d681ab32ae6823b7c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Archisketch_199689_Frame_normal
+    second: {fileID: 2800000, guid: d7a116af72b6c4882ae8ec35ce573dcf, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
