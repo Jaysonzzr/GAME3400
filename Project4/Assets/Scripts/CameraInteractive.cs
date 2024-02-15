@@ -35,6 +35,6 @@ public class CameraInteractive : MonoBehaviour
             }
         }
 
-        itemCountText.text = itemCount.ToString() + "/5";
+        itemCountText.text = itemCount.ToString() + "/9";
     }
 }
