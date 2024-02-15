@@ -31,8 +31,25 @@ public class TextDisplay : MonoBehaviour
         isTextTyping = true;
 
         cameraInteractive.itemCount++;
-        hitObject.GetComponent<MeshRenderer>().enabled = false;
-        hitObject.GetComponent<MeshCollider>().enabled = false;
+        if (hitObject.GetComponent<MeshRenderer>() != null)
+        {
+            hitObject.GetComponent<MeshRenderer>().enabled = false;
+            hitObject.GetComponent<MeshCollider>().enabled = false;
+        }
+
+        if (hitObject.GetComponent<BoxCollider>() != null)
+        {
+            hitObject.GetComponent<BoxCollider>().enabled = false;
+        }
+
+        foreach (Transform childTransform in hitObject.transform)
+        {
+            MeshRenderer meshRenderer = childTransform.GetComponent<MeshRenderer>();
+            if (meshRenderer != null)
+            {
+                meshRenderer.enabled = false;
+            }
+        }
 
         while (index < sentences.Length)
         {
