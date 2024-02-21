@@ -13,6 +13,18 @@ public class CameraInteractive : MonoBehaviour
     bool haveSpotLight = false;
 
     public AudioClip collectSFX;
+    public AudioClip lightSFX;
+
+    [Header("Flash Light Text")]
+    public Text textToFade;
+    public Image backgroundToFade;
+    public float fadeInDuration = 1.5f;
+    public float fadeOutDuration = 1.0f;
+
+    private bool isFadingIn = false;
+    private bool isFadingOut = false;
+
+    private int collectCount = 0;
 
     // Update is called once per frame
     void Update()
@@ -35,6 +47,8 @@ public class CameraInteractive : MonoBehaviour
                         hitObject.GetComponent<MeshCollider>().enabled = false;
                         AudioSource.PlayClipAtPoint(collectSFX, Camera.main.transform.position);
                         haveSpotLight = true;
+
+                        FadeIn();
                     }
 
                     if (hitObject.CompareTag("PowerSwitch"))
@@ -60,6 +74,15 @@ public class CameraInteractive : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
+                collectCount++;
+
+                AudioSource.PlayClipAtPoint(lightSFX, Camera.main.transform.position);
+
+                if (collectCount == 1)
+                {
+                    FadeOut();
+                }
+
                 if (spotlight.enabled == true)
                 {
                     spotlight.enabled = false;
@@ -70,5 +93,35 @@ public class CameraInteractive : MonoBehaviour
                 }
             }
         }
+    }
+
+    void SetAlpha(float alpha)
+    {
+        textToFade.color = new Color(textToFade.color.r, textToFade.color.g, textToFade.color.b, alpha);
+        backgroundToFade.color = new Color(backgroundToFade.color.r, backgroundToFade.color.g, backgroundToFade.color.b, alpha);
+    }
+
+    public void FadeIn()
+    {
+        StartCoroutine(Fade(0, 1, fadeInDuration));
+    }
+
+    public void FadeOut()
+    {
+        float currentAlpha = textToFade.color.a;
+        StartCoroutine(Fade(currentAlpha, 0, fadeOutDuration));
+    }
+
+    IEnumerator Fade(float startAlpha, float endAlpha, float duration)
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float newAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
+            SetAlpha(newAlpha);
+            yield return null;
+        }
+        SetAlpha(endAlpha);
     }
 }
