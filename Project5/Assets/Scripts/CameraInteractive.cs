@@ -70,7 +70,7 @@ public class CameraInteractive : MonoBehaviour
                         
                         foreach (Light light in lights)
                         {
-                            StartCoroutine(FadeLightOn(light, 3f, 3f));
+                            StartCoroutine(FadeLightOn(light, 2f, 3f));
                         }
 
                         spotlight.enabled = false;
@@ -128,17 +128,18 @@ public class CameraInteractive : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         float startIntensity = 0f;
+        float startFogDensity = RenderSettings.fogDensity;
         float time = 0;
 
         while (time < duration)
         {
             light.intensity = Mathf.Lerp(startIntensity, targetIntensity, time / duration);
+            RenderSettings.fogDensity = Mathf.Lerp(startFogDensity, 0, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
 
         light.intensity = targetIntensity;
-        RenderSettings.fog = false;
     }
 
     void SetAlpha(float alpha)
