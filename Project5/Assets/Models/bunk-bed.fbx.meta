@@ -3,7 +3,92 @@ guid: 5dd39521803c34ffaa6c5d0b1dbf9a4b
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lime._JianE_Mtl_20211210205035521
+    second: {fileID: 2100000, guid: 9592b8f7bb88740e1938cab86293a513, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lime._JianE_Mtl_20211210205035522
+    second: {fileID: 2100000, guid: 1d8cd5b5262fe420f9d9e926c5c2befc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lime._JianE_Mtl_20211210205035523
+    second: {fileID: 2100000, guid: b13331c7ce9fb4a8eac750e12f767e26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lime._JianE_Mtl_20211210205035524_1
+    second: {fileID: 2100000, guid: c7fa5519a860a4e11b7cec871f6ca37d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lime._JianE_Mtl_20211210205035524_2
+    second: {fileID: 2100000, guid: b8a6511d760f4408aba762e16e599d85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lime._JianE_Mtl_202112102050355313
+    second: {fileID: 2100000, guid: d0b88f7c47b614359a8393a28a4ab183, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lime._JianE_Mtl_20211210205035535
+    second: {fileID: 2100000, guid: 858c7387eb59f40dfb358c6b008c606e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lime._JianE_Mtl_20211210205035538_1
+    second: {fileID: 2100000, guid: 9b46f58a8ea0a443db6291b47f8ad5b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lime._JianE_Mtl_20211210205035538_2
+    second: {fileID: 2100000, guid: 30794dca9fea349aebb6f1ef8466b210, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lime._Bump_justeasy.cn_map_20211210205033575
+    second: {fileID: 2800000, guid: f15bdab1260d44b768c7312c4d2c4752, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lime._Diff_justeasy.cn_map_20211210205033361
+    second: {fileID: 2800000, guid: 19224781457da4bbba87b851e4db0e52, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lime._Diff_justeasy.cn_map_20211210205033463
+    second: {fileID: 2800000, guid: d795d9eb9fd124d97a557920f8631406, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lime._Diff_justeasy.cn_map_20211210205033575
+    second: {fileID: 2800000, guid: 722f2e2badfb54a099c2ac39bb5becc9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lime._Diff_justeasy.cn_map_20211210205033677
+    second: {fileID: 2800000, guid: 925fa75606586426ba38fe0ec7f62c00, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lime._Refl_justeasy.cn_map_20211210205033575
+    second: {fileID: 2800000, guid: 06bddee9ddea0414886fc25b90fedd7a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lime._justeasy.cn_map_20211210205033442
+    second: {fileID: 2800000, guid: aebff3d9f5fc34d89a97556434ec1132, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lime._justeasy.cn_map_20211210205033484
+    second: {fileID: 2800000, guid: b732c56e1ad3a4183b9d280692f232c2, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
