@@ -17,7 +17,7 @@ public class BackgroundSounds : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioSource.PlayClipAtPoint(crewmates[0], mainSoundbox.transform.position);
+        // AudioSource.PlayClipAtPoint(crewmates[0], mainSoundbox.transform.position);
     }
 
     // Update is called once per frame

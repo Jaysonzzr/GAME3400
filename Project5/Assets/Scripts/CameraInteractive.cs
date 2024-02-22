@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CameraInteractive : MonoBehaviour
 {
+    public AudioSource audioSource;
+
     public float maxDistance; // Maximum distance at which object info will be displayed
 
     public Light spotlight;
@@ -14,6 +16,7 @@ public class CameraInteractive : MonoBehaviour
 
     public AudioClip collectSFX;
     public AudioClip lightSFX;
+    public AudioClip startEngine;
 
     [Header("Flash Light Text")]
     public Text textToFade;
@@ -21,10 +24,9 @@ public class CameraInteractive : MonoBehaviour
     public float fadeInDuration = 1.5f;
     public float fadeOutDuration = 1.0f;
 
-    private bool isFadingIn = false;
-    private bool isFadingOut = false;
-
     private int collectCount = 0;
+
+    bool interacted = false;
 
     // Update is called once per frame
     void Update()
@@ -51,13 +53,15 @@ public class CameraInteractive : MonoBehaviour
                         FadeIn();
                     }
 
-                    if (hitObject.CompareTag("PowerSwitch"))
+                    if (hitObject.CompareTag("PowerSwitch") && !interacted)
                     {
-                        RenderSettings.fog = false;
+                        StartCoroutine(FadeVolume(1f, 3f));
+
+                        interacted = true;
                         
                         foreach (Light light in lights)
                         {
-                            light.enabled = true;
+                            StartCoroutine(FadeLightOn(light, 1f, 3f));
                         }
 
                         spotlight.enabled = false;
@@ -93,6 +97,39 @@ public class CameraInteractive : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator FadeVolume(float targetVolume, float duration)
+    {
+        float currentTime = 0;
+        float startVolume = audioSource.volume;
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, targetVolume, currentTime / duration);
+            yield return null;
+        }
+
+        audioSource.volume = targetVolume;
+    }
+
+    IEnumerator FadeLightOn(Light light, float targetIntensity, float duration)
+    {
+        yield return new WaitForSeconds(2f);
+
+        float startIntensity = 0f;
+        float time = 0;
+
+        while (time < duration)
+        {
+            light.intensity = Mathf.Lerp(startIntensity, targetIntensity, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        // light.intensity = targetIntensity;
+        RenderSettings.fog = false;
     }
 
     void SetAlpha(float alpha)
