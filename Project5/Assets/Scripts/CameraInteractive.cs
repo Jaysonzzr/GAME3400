@@ -45,8 +45,17 @@ public class CameraInteractive : MonoBehaviour
                 {
                     if (hitObject.CompareTag("Spotlight"))
                     {
-                        hitObject.GetComponent<MeshRenderer>().enabled = false;
-                        hitObject.GetComponent<MeshCollider>().enabled = false;
+                        hitObject.GetComponent<BoxCollider>().enabled = false;
+
+                        foreach (Transform childTransform in hitObject.transform)
+                        {
+                            MeshRenderer meshRenderer = childTransform.GetComponent<MeshRenderer>();
+                            if (meshRenderer != null)
+                            {
+                                meshRenderer.enabled = false;
+                            }
+                        }
+
                         AudioSource.PlayClipAtPoint(collectSFX, Camera.main.transform.position);
                         haveSpotLight = true;
 
@@ -61,7 +70,7 @@ public class CameraInteractive : MonoBehaviour
                         
                         foreach (Light light in lights)
                         {
-                            StartCoroutine(FadeLightOn(light, 1f, 3f));
+                            StartCoroutine(FadeLightOn(light, 3f, 3f));
                         }
 
                         spotlight.enabled = false;
@@ -128,7 +137,7 @@ public class CameraInteractive : MonoBehaviour
             yield return null;
         }
 
-        // light.intensity = targetIntensity;
+        light.intensity = targetIntensity;
         RenderSettings.fog = false;
     }
 
