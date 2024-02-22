@@ -14,6 +14,8 @@ public class BackgroundSounds : MonoBehaviour
     private float counterCrush = 0f;
     private float counterCrew = 0f;
 
+    bool crewSpeak = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +35,16 @@ public class BackgroundSounds : MonoBehaviour
             counterCrush = 0;
         }
 
-        if (counterCrew > 10)
+        if (counterCrew > 10 && crewSpeak)
         {
             AudioClip crew = crewmates[Random.Range(0, crewmates.Length)];
             AudioSource.PlayClipAtPoint(crew, mainSoundbox.transform.position, 2);
             counterCrew = 0;
         }
+    }
+
+    public void StopCrew()
+    {
+        crewSpeak = false;
     }
 }

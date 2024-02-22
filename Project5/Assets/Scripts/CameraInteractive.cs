@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CameraInteractive : MonoBehaviour
 {
+    public BackgroundSounds backgroundSounds;
+
     public AudioSource audioSource;
 
     public float maxDistance; // Maximum distance at which object info will be displayed
@@ -16,7 +18,7 @@ public class CameraInteractive : MonoBehaviour
 
     public AudioClip collectSFX;
     public AudioClip lightSFX;
-    public AudioClip startEngine;
+    public AudioClip buttonClick;
 
     [Header("Flash Light Text")]
     public Text textToFade;
@@ -64,21 +66,45 @@ public class CameraInteractive : MonoBehaviour
 
                     if (hitObject.CompareTag("PowerSwitch") && !interacted)
                     {
+                        AudioSource.PlayClipAtPoint(buttonClick, Camera.main.transform.position);
+
+                        backgroundSounds.StopCrew();
+
+                        hitObject.GetComponent<Outline>().enabled = false;
+
                         StartCoroutine(FadeVolume(1f, 3f));
 
                         interacted = true;
                         
                         foreach (Light light in lights)
                         {
-                            StartCoroutine(FadeLightOn(light, 2f, 3f));
+                            StartCoroutine(FadeLightOn(light, 2f, 4f));
                         }
 
                         spotlight.enabled = false;
                         haveSpotLight = false;
+
+                        Vector3 newPosition = new Vector3(0.4609286f, 0.345f, -0.07266025f);
+                        StartCoroutine(MoveObjectToPosition(hitObject, newPosition, 1f));
                     }
                 }
             }
         }
+    }
+
+    IEnumerator MoveObjectToPosition(GameObject obj, Vector3 targetPosition, float duration)
+    {
+        Vector3 startPosition = obj.transform.localPosition;
+        float time = 0;
+
+        while (time < duration)
+        {
+            obj.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        obj.transform.localPosition = targetPosition;
     }
 
     void FlashLight()
@@ -125,7 +151,7 @@ public class CameraInteractive : MonoBehaviour
 
     IEnumerator FadeLightOn(Light light, float targetIntensity, float duration)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         float startIntensity = 0f;
         float startFogDensity = RenderSettings.fogDensity;
