@@ -23,7 +23,8 @@ public class TextDisplay : MonoBehaviour
         textComponent.text = "";
         sentences = newText;
         index = 0;
-        StartCoroutine(TypeSentence(hitObject));
+        Destroy(hitObject);
+        StartCoroutine(TypeSentence());
     }
 
     public void DisplayNonInteractableText(string[] newText)
@@ -38,32 +39,9 @@ public class TextDisplay : MonoBehaviour
         StartCoroutine(TypeSentenceNonInteractable());
     }
 
-    IEnumerator TypeSentence(GameObject hitObject)
+    IEnumerator TypeSentence()
     {
         isTextTyping = true;
-
-        hitObject.GetComponent<MeshRenderer>().enabled = false;
-        hitObject.GetComponent<BoxCollider>().enabled = false;
-
-        // if (hitObject.GetComponent<MeshRenderer>() != null)
-        // {
-        //     hitObject.GetComponent<MeshRenderer>().enabled = false;
-        //     hitObject.GetComponent<MeshCollider>().enabled = false;
-        // }
-
-        // if (hitObject.GetComponent<BoxCollider>() != null)
-        // {
-        //     hitObject.GetComponent<BoxCollider>().enabled = false;
-        // }
-
-        // foreach (Transform childTransform in hitObject.transform)
-        // {
-        //     MeshRenderer meshRenderer = childTransform.GetComponent<MeshRenderer>();
-        //     if (meshRenderer != null)
-        //     {
-        //         meshRenderer.enabled = false;
-        //     }
-        // }
 
         while (index < sentences.Length)
         {
