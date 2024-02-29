@@ -26,6 +26,18 @@ public class TextDisplay : MonoBehaviour
         StartCoroutine(TypeSentence(hitObject));
     }
 
+    public void DisplayNonInteractableText(string[] newText)
+    {
+        if (isTextTyping) return;
+
+        StopAllCoroutines();
+        ResetTextAlpha();
+        textComponent.text = "";
+        sentences = newText;
+        index = 0;
+        StartCoroutine(TypeSentenceNonInteractable());
+    }
+
     IEnumerator TypeSentence(GameObject hitObject)
     {
         isTextTyping = true;
@@ -52,6 +64,36 @@ public class TextDisplay : MonoBehaviour
         //         meshRenderer.enabled = false;
         //     }
         // }
+
+        while (index < sentences.Length)
+        {
+            textComponent.text = "";
+            string sentence = sentences[index];
+
+            foreach (char letter in sentence.ToCharArray())
+            {
+                textComponent.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+
+            index++;
+            yield return new WaitForSeconds(1f);
+
+            if (index >= sentences.Length)
+            {
+                yield return StartCoroutine(FadeTextAlpha());
+                break;
+            }
+        }
+
+        isTextTyping = false;
+    }
+
+    IEnumerator TypeSentenceNonInteractable()
+    {
+        yield return new WaitForSeconds(3.5f);
+
+        isTextTyping = true;
 
         while (index < sentences.Length)
         {
