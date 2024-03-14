@@ -14,7 +14,7 @@ public class Interactable : MonoBehaviour
     {
         if (!triggered && audioClip != null && audioSource != null && !audioSource.isPlaying && gameObject.GetComponent<AudioSource>() == null)
         {
-            audioSource.PlayOneShot(audioClip);
+            StartCoroutine(PlayAfterDelay(audioSource, audioClip, 0.5f));
 
             gameObject.GetComponent<Outline>().enabled = false;
 
@@ -25,16 +25,16 @@ public class Interactable : MonoBehaviour
         if (jukebox != null && !jukebox.isPlaying && !triggered)
         {
             jukebox.PlayOneShot(globalAudioClip);
-            StartCoroutine(PlayAfterDelay(audioSource, audioClip));
+            StartCoroutine(PlayAfterDelay(audioSource, audioClip, 1.5f));
             StartCoroutine(GlitchPitch(jukebox, 2));
             gameObject.GetComponent<Outline>().enabled = false;
             triggered = true;
         }
     }
 
-    IEnumerator PlayAfterDelay(AudioSource source, AudioClip clip)
+    IEnumerator PlayAfterDelay(AudioSource source, AudioClip clip, float waitSecond)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(waitSecond);
         source.clip = clip;
         source.Play();
     }
