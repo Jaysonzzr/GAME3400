@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController controller;
     public float moveSpeed = 5.0f;
+    public float runMultiplier = 2.0f;
     public float gravity = 9.81f;
     private Vector3 moveDirection = Vector3.zero;
     public Transform cameraTransform;
@@ -15,6 +16,10 @@ public class PlayerController : MonoBehaviour
     private float bobTimer = 0.0f;
     private float originalCameraY;
     private bool isMoving = false;
+
+    public float energy = 100f;
+    public float energyDepletionRate = 10f;
+    public float energyRecoveryRate = 5f;
 
     void Start()
     {
@@ -27,6 +32,7 @@ public class PlayerController : MonoBehaviour
         {
             PlayerMovement();
             ResetCameraPosition();
+            ManageEnergy();
         }
     }
 
@@ -36,8 +42,14 @@ public class PlayerController : MonoBehaviour
         float moveVertical = Input.GetAxisRaw("Vertical");
 
         Vector3 input = (transform.right * moveHorizontal + transform.forward * moveVertical).normalized * moveSpeed;
-
         isMoving = input.magnitude > 0f;
+
+        if (isMoving && Input.GetKey(KeyCode.LeftShift) && energy > 0)
+        {
+            input *= runMultiplier;
+            energy -= energyDepletionRate * Time.deltaTime;
+            energy = Mathf.Max(energy, 0);
+        }
 
         if (controller.isGrounded)
         {
@@ -60,6 +72,15 @@ public class PlayerController : MonoBehaviour
         else
         {
             bobTimer = 0f;
+        }
+    }
+
+    void ManageEnergy()
+    {
+        if (!isMoving || (isMoving && !Input.GetKey(KeyCode.LeftShift)))
+        {
+            energy += energyRecoveryRate * Time.deltaTime;
+            energy = Mathf.Min(energy, 100);
         }
     }
 
