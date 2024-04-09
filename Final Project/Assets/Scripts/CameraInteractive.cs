@@ -23,7 +23,36 @@ public class CameraInteractive : MonoBehaviour
                     {
                         if (Input.GetKeyDown(KeyCode.E))
                         {
-                            hitObject.GetComponent<Interactable>().PlayClip();
+                            if (hitObject.name == "Exit")
+                            {
+                                if (KeycardBehavior.unlockExit)
+                                {
+                                    Debug.Log("ESCAPE");
+                                }
+                                else
+                                {
+                                    hitObject.GetComponent<Interactable>().PlayClip();
+                                }
+                            }
+                            else if (hitObject.name == "Safe")
+                            {
+                                if (LoopManager.unlockSafe)
+                                {
+                                    hitObject.GetComponent<SafeBehavior>().OpenSafe();
+                                }
+                                else
+                                {
+                                    hitObject.GetComponent<Interactable>().PlayClip();
+                                }
+                            }
+                            else if (hitObject.name == "Keycard")
+                            {
+                                hitObject.GetComponent<KeycardBehavior>().CollectKeycard();
+                            }
+                            else
+                            {
+                                hitObject.GetComponent<Interactable>().PlayClip();
+                            }
                         }
                     }
                 }
