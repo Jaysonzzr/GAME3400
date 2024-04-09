@@ -37,6 +37,10 @@ public class TextDisplay : MonoBehaviour
 
             foreach (char letter in sentence.ToCharArray())
             {
+                while (PauseMenuManager.isGamePaused)
+                {
+                    yield return null;
+                }
                 textComponent.text += letter;
                 yield return new WaitForSeconds(typingSpeed);
             }

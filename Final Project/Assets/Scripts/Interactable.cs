@@ -17,6 +17,18 @@ public class Interactable : MonoBehaviour
         audioSource = Camera.main.GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        if (!PauseMenuManager.isGamePaused)
+        {
+            audioSource.UnPause();
+        }
+        else
+        {
+            audioSource.Pause();
+        }
+    }
+
     public void PlayClip()
     {
         if (Time.time - lastPlayTime >= cooldownTime)

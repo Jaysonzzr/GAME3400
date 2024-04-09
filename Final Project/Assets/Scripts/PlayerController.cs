@@ -23,8 +23,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        PlayerMovement();
-        ResetCameraPosition();
+        if (!PauseMenuManager.isGamePaused)
+        {
+            PlayerMovement();
+            ResetCameraPosition();
+        }
     }
 
     void PlayerMovement()

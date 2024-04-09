@@ -10,18 +10,21 @@ public class CameraInteractive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        if (!PauseMenuManager.isGamePaused)
         {
-            GameObject hitObject = hit.transform.gameObject;
-            if (hitObject.CompareTag("Interactable"))
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit))
             {
-                float distance = Vector3.Distance(transform.position, hitObject.transform.position);
-                if (distance <= maxDistance)
+                GameObject hitObject = hit.transform.gameObject;
+                if (hitObject.CompareTag("Interactable"))
                 {
-                    if (Input.GetKeyDown(KeyCode.E))
+                    float distance = Vector3.Distance(transform.position, hitObject.transform.position);
+                    if (distance <= maxDistance)
                     {
-                        hitObject.GetComponent<Interactable>().PlayClip();
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            hitObject.GetComponent<Interactable>().PlayClip();
+                        }
                     }
                 }
             }
