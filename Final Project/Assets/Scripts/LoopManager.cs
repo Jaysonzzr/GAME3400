@@ -18,7 +18,7 @@ public class LoopManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             unlockSafe = true;
-            Debug.Log("LOOP END");
+            GetComponent<Interactable>().PlayClip();
         }
     }
 }

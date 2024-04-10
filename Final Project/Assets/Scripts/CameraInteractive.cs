@@ -27,7 +27,7 @@ public class CameraInteractive : MonoBehaviour
                             {
                                 if (KeycardBehavior.unlockExit)
                                 {
-                                    Debug.Log("ESCAPE");
+                                    hitObject.GetComponent<ExitBehavior>().EscapeRoom();
                                 }
                                 else
                                 {
