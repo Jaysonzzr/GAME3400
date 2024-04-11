@@ -21,6 +21,10 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start() 
     {
+        Screen.SetResolution(1920, 1080, true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         if (image != null && !image.gameObject.activeSelf)
             image.gameObject.SetActive(true);
             
@@ -132,5 +136,10 @@ public class MainMenuManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void ChangeColor()
+    {
+        back.color = Color.white;
     }
 }

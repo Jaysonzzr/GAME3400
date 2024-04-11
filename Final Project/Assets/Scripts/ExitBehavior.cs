@@ -47,7 +47,7 @@ public class ExitBehavior : MonoBehaviour
 
     IEnumerator FadeImageAndLoadMainMenu()
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(5);
 
         imageToFade.gameObject.SetActive(true);
 
