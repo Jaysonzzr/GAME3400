@@ -1,34 +1,9 @@
 fileFormatVersion: 2
-guid: 2efa09082b57940b6810ff4caffc1c54
+guid: 64f93248c493f401f8c5b564dbe67b6e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: wheelchair_new
-    second: {fileID: 2100000, guid: a61e7fe004db74403b9907857bbb7dcb, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: wheelchair_Diffuse
-    second: {fileID: 2800000, guid: 0d0997f6b6b1c4a59adaacb5eec4ce77, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: wheelchair_Metallic
-    second: {fileID: 2800000, guid: 1e5f927b9b56541d38fb0ec7e02e5305, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: wheelchair_Normal
-    second: {fileID: 2800000, guid: b5a82af0981f64f5da4ab0dd1b61d590, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: wheelchair_Roughness
-    second: {fileID: 2800000, guid: 6fff4cb19ecc94a998842cd99d723ceb, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
