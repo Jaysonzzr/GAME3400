@@ -22,7 +22,11 @@ public class ExitBehavior : MonoBehaviour
         if (!triggered && audioSource != null && !audioSource.isPlaying && gameObject.GetComponent<AudioSource>() == null && !FindObjectOfType<TextDisplay>().isTextTyping)
         {
             FindObjectOfType<TextDisplay>().DisplayText(textToDisplay);
-            // StartCoroutine(PlayAfterDelay(audioSource, audioClip, 0.5f));
+
+            if (audioClip != null)
+            {
+                StartCoroutine(PlayAfterDelay(audioSource, audioClip, 0.1f));
+            }
 
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
             Camera.main.GetComponent<CameraController>().enabled = false;

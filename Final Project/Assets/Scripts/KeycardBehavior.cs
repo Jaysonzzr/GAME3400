@@ -19,7 +19,10 @@ public class KeycardBehavior : MonoBehaviour
             unlockExit = true;
             
             FindObjectOfType<TextDisplay>().DisplayText(textToDisplay);
-            // StartCoroutine(PlayAfterDelay(audioSource, audioClip, 0.5f));
+            if (audioClip != null)
+            {
+                StartCoroutine(PlayAfterDelay(audioSource, audioClip, 0.1f));
+            }
 
             gameObject.GetComponent<Outline>().enabled = false;
             gameObject.GetComponent<MeshRenderer>().enabled = false;

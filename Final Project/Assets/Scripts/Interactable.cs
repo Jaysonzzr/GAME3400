@@ -36,7 +36,10 @@ public class Interactable : MonoBehaviour
             if (audioSource != null && !audioSource.isPlaying && gameObject.GetComponent<AudioSource>() == null && !FindObjectOfType<TextDisplay>().isTextTyping)
             {
                 FindObjectOfType<TextDisplay>().DisplayText(textToDisplay);
-                // StartCoroutine(PlayAfterDelay(audioSource, audioClip, 0.5f));
+                if (audioClip != null)
+                {
+                    StartCoroutine(PlayAfterDelay(audioSource, audioClip, 0.1f));
+                }
                 lastPlayTime = Time.time;
             }
         }
