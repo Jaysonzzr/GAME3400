@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     public Transform cameraTransform;
 
-    private float bobbingFrequency = 8f;
+    private float bobbingFrequency = 6f;
     private float bobbingAmplitude = 0.08f;
     private float bobTimer = 0.0f;
     private float originalCameraY;
@@ -55,11 +55,11 @@ public class PlayerController : MonoBehaviour
             input *= runMultiplier;
             energy -= energyDepletionRate * Time.deltaTime;
             energy = Mathf.Max(energy, 0);
-            bobbingFrequency = 16;
+            bobbingFrequency = 12;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            bobbingFrequency = 8;
+            bobbingFrequency = 6;
         }
 
         if (controller.isGrounded)
