@@ -21,6 +21,12 @@ public class PlayerController : MonoBehaviour
     public float energyDepletionRate = 10f;
     public float energyRecoveryRate = 5f;
 
+    private float lastCameraY;
+    public AudioClip[] footsteps;
+    private int currentFootstepIndex = 0;
+    private bool canPlayFootstep = true;
+    public AudioSource audioSource;
+
     void Start()
     {
         originalCameraY = cameraTransform.localPosition.y;
@@ -68,10 +74,24 @@ public class PlayerController : MonoBehaviour
             bobTimer += Time.deltaTime;
             float bobSine = Mathf.Sin(bobTimer * bobbingFrequency) * bobbingAmplitude;
             cameraTransform.localPosition = new Vector3(cameraTransform.localPosition.x, originalCameraY + bobSine, cameraTransform.localPosition.z);
+
+            if (cameraTransform.localPosition.y < lastCameraY && canPlayFootstep)
+            {
+                audioSource.PlayOneShot(footsteps[currentFootstepIndex]);
+                currentFootstepIndex = (currentFootstepIndex + 1) % footsteps.Length;
+                canPlayFootstep = false;
+            }
+            else if (cameraTransform.localPosition.y > lastCameraY)
+            {
+                canPlayFootstep = true;
+            }
+
+            lastCameraY = cameraTransform.localPosition.y;
         }
         else
         {
             bobTimer = 0f;
+            lastCameraY = cameraTransform.localPosition.y;
         }
     }
 
