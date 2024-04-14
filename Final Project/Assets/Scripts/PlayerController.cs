@@ -55,6 +55,11 @@ public class PlayerController : MonoBehaviour
             input *= runMultiplier;
             energy -= energyDepletionRate * Time.deltaTime;
             energy = Mathf.Max(energy, 0);
+            bobbingFrequency = 16;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            bobbingFrequency = 8;
         }
 
         if (controller.isGrounded)
