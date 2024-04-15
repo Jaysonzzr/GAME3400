@@ -9,6 +9,7 @@ public class TextDisplay : MonoBehaviour
     public Text textComponent;
     public float typingSpeed = 0.05f;
     public bool isTextTyping = false;
+    public Color originalColor;
     public Color textColor;
 
     private int index;
@@ -56,6 +57,7 @@ public class TextDisplay : MonoBehaviour
         }
 
         isTextTyping = false;
+        textColor = originalColor;
     }
 
     IEnumerator FadeTextAlpha(float fadeDuration = 2f)

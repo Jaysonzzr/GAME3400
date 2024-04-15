@@ -12,6 +12,8 @@ public class LoopManager : MonoBehaviour
 
     public static bool unlockSafe = false;
 
+    public Color color;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class LoopManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             unlockSafe = true;
+            FindObjectOfType<TextDisplay>().textColor = color;
             GetComponent<Interactable>().PlayClip();
         }
     }

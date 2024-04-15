@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
         Vector3 input = (transform.right * moveHorizontal + transform.forward * moveVertical).normalized * moveSpeed;
         isMoving = input.magnitude > 0f;
 
+        if (energy == 0)
+        {
+            bobbingFrequency = 6;
+        }
+
         if (isMoving && Input.GetKey(KeyCode.LeftShift) && energy > 0)
         {
             input *= runMultiplier;
@@ -82,8 +87,7 @@ public class PlayerController : MonoBehaviour
 
             if (cameraTransform.localPosition.y < lastCameraY && canPlayFootstep)
             {
-                audioSource.PlayOneShot(footsteps[currentFootstepIndex]);
-                currentFootstepIndex = (currentFootstepIndex + 1) % footsteps.Length;
+                Invoke("PlayFootstepAudio", 0.2f);
                 canPlayFootstep = false;
             }
             else if (cameraTransform.localPosition.y > lastCameraY)
@@ -115,5 +119,11 @@ public class PlayerController : MonoBehaviour
         {
             cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, new Vector3(cameraTransform.localPosition.x, originalCameraY, cameraTransform.localPosition.z), Time.deltaTime * 5f);
         }
+    }
+
+    void PlayFootstepAudio()
+    {
+        audioSource.PlayOneShot(footsteps[currentFootstepIndex]);
+        currentFootstepIndex = (currentFootstepIndex + 1) % footsteps.Length;
     }
 }

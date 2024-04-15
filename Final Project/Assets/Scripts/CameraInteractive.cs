@@ -49,6 +49,10 @@ public class CameraInteractive : MonoBehaviour
                             {
                                 hitObject.GetComponent<KeycardBehavior>().CollectKeycard();
                             }
+                            else if (hitObject.name == "Key")
+                            {
+                                hitObject.GetComponent<KeyBehavior>().CollectKey();
+                            }
                             else
                             {
                                 hitObject.GetComponent<Interactable>().PlayClip();

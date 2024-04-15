@@ -5,7 +5,9 @@ using UnityEngine;
 public class SafeBehavior : MonoBehaviour
 {
     public AudioClip audioClip;
+    public AudioClip unlockSafeSFX;
     public AudioSource audioSource;
+    public AudioSource unlockAudioSource;
     public string[] textToDisplay;
 
     bool triggered = false;
@@ -13,10 +15,13 @@ public class SafeBehavior : MonoBehaviour
     public Transform safeTrans;
     public float rotationDuration = 2f;
 
+    public Color color;
+
     public void OpenSafe()
     {
         if (!triggered && audioSource != null && !audioSource.isPlaying && gameObject.GetComponent<AudioSource>() == null && !FindObjectOfType<TextDisplay>().isTextTyping)
         {
+            FindObjectOfType<TextDisplay>().textColor = color;
             FindObjectOfType<TextDisplay>().DisplayText(textToDisplay);
 
             StartCoroutine(RotateSafeDoor());
@@ -25,6 +30,7 @@ public class SafeBehavior : MonoBehaviour
             {
                 StartCoroutine(PlayAfterDelay(audioSource, audioClip, 0.1f));
             }
+            unlockAudioSource.PlayOneShot(unlockSafeSFX);
 
             gameObject.GetComponent<Outline>().enabled = false;
 
