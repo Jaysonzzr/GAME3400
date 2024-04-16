@@ -13,6 +13,7 @@ public class LoopEndTrigger : MonoBehaviour
     public GameObject oldCeiling;
     public GameObject newCeiling;
     public Transform player;
+    public Transform floor;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,8 @@ public class LoopEndTrigger : MonoBehaviour
             {
                 deleteObject.SetActive(false);
             }
+
+            floor.position = new Vector3(floor.position.x + 168, 0, 0);
 
             player.gameObject.GetComponent<PlayerController>().enabled = false;
             player.position = new Vector3(player.position.x + 168, player.position.y, player.position.z);
