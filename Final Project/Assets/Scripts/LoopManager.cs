@@ -12,25 +12,6 @@ public class LoopManager : MonoBehaviour
 
     public static bool unlockSafe = false;
 
-    public Color color;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            unlockSafe = true;
-            FindObjectOfType<TextDisplay>().textColor = color;
-            GetComponent<Interactable>().PlayClip();
-        }
-    }
-
     IEnumerator PlayAfterDelay(AudioSource source, AudioClip clip, float waitSecond)
     {
         yield return new WaitForSeconds(waitSecond);

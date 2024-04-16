@@ -17,10 +17,13 @@ public class ExitBehavior : MonoBehaviour
     public float fadeDuration = 2f;
     public float waitTime = 2f;
 
+    public Color color;
+
     public void EscapeRoom()
     {
         if (!triggered && audioSource != null && !audioSource.isPlaying && gameObject.GetComponent<AudioSource>() == null && !FindObjectOfType<TextDisplay>().isTextTyping)
         {
+            FindObjectOfType<TextDisplay>().textColor = color;
             FindObjectOfType<TextDisplay>().DisplayText(textToDisplay);
 
             if (audioClip != null)
