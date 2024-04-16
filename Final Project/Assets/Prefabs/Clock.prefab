@@ -763,7 +763,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8087764105132076886
 Transform:
@@ -1208,6 +1208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointerType: 1
+  reverseRotation: 0
 --- !u!1 &1818870642441955167
 GameObject:
   m_ObjectHideFlags: 0
@@ -3910,6 +3911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointerType: 0
+  reverseRotation: 0
 --- !u!1 &5134767638755582520
 GameObject:
   m_ObjectHideFlags: 0
@@ -4501,7 +4503,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6579528906603864195}
   - component: {fileID: 6684916156330510434}
-  - component: {fileID: 5508634282016597756}
   m_Layer: 0
   m_Name: Clock
   m_TagString: Untagged
@@ -4539,7 +4540,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 58735793866d549609c73bee8ce2df24, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
@@ -4624,19 +4625,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5508634282016597756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5766012711128922681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50bd2f97b691b9d4684e903b96e48dd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waitSeconds: 0.3
 --- !u!1 &5793931041284286909
 GameObject:
   m_ObjectHideFlags: 0
@@ -4819,7 +4807,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &9161999344515272675
 Transform:
@@ -6011,6 +5999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointerType: 2
+  reverseRotation: 0
 --- !u!1 &8088654487131389135
 GameObject:
   m_ObjectHideFlags: 0
@@ -6027,7 +6016,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7982823267734832021
 Transform:

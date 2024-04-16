@@ -21,7 +21,7 @@ public class LoopManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!triggered && audioSource != null && !audioSource.isPlaying && gameObject.GetComponent<AudioSource>() == null && !FindObjectOfType<TextDisplay>().isTextTyping)
+        if (!triggered && audioSource != null && gameObject.GetComponent<AudioSource>() == null && !FindObjectOfType<TextDisplay>().isTextTyping)
         {
             FindObjectOfType<TextDisplay>().DisplayText(textToDisplay);
             
