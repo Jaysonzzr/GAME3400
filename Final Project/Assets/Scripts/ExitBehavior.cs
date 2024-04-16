@@ -49,7 +49,7 @@ public class ExitBehavior : MonoBehaviour
     }
 
     IEnumerator FadeImageAndLoadMainMenu()
-    {
+    {       
         yield return new WaitForSeconds(5);
 
         imageToFade.gameObject.SetActive(true);
@@ -57,6 +57,11 @@ public class ExitBehavior : MonoBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
         {
+            while (PauseMenuManager.isGamePaused)
+            {
+                yield return null;
+            }
+
             elapsedTime += Time.deltaTime;
             float alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
             imageToFade.color = new Color(imageToFade.color.r, imageToFade.color.g, imageToFade.color.b, alpha);
@@ -71,6 +76,11 @@ public class ExitBehavior : MonoBehaviour
         float elapsedTime1 = 0f;
         while (elapsedTime1 < fadeDuration)
         {
+            while (PauseMenuManager.isGamePaused)
+            {
+                yield return null;
+            }
+
             elapsedTime1 += Time.deltaTime;
             float alpha = 1 - Mathf.Clamp01(elapsedTime1 / fadeDuration);
             text.color = new Color(text.color.r, text.color.g, text.color.b, alpha);

@@ -9,7 +9,7 @@ public class Interactable : MonoBehaviour
 
     public string[] textToDisplay;
 
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     private float lastPlayTime = -Mathf.Infinity;
 
     private void Start()

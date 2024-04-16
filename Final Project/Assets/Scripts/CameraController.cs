@@ -18,10 +18,6 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        Screen.SetResolution(1920, 1080, true);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        
         player = GameObject.FindGameObjectWithTag("Player");
         offset = transform.position - player.transform.position;
 

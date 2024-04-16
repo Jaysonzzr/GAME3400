@@ -55,6 +55,11 @@ public class SafeBehavior : MonoBehaviour
         {
             float zRotation = Mathf.Lerp(startAngle, endAngle, timeElapsed / rotationDuration);
             
+            while (PauseMenuManager.isGamePaused)
+            {
+                yield return null;
+            }
+
             safeTrans.localRotation = Quaternion.Euler(safeTrans.localRotation.eulerAngles.x, safeTrans.localRotation.eulerAngles.y, zRotation);
 
             timeElapsed += Time.deltaTime;

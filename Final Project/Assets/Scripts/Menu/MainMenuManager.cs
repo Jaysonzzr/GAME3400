@@ -19,6 +19,8 @@ public class MainMenuManager : MonoBehaviour
 
     public Text back;
 
+    public AudioSource audioSource;
+
     private void Start() 
     {
         Screen.SetResolution(1920, 1080, true);
@@ -59,6 +61,7 @@ public class MainMenuManager : MonoBehaviour
         {
             image.raycastTarget = false;
             text.raycastTarget = false;
+            audioSource.Play();
             StartCoroutine(ImageFadeOut());
             fadeTime = 0;
         }

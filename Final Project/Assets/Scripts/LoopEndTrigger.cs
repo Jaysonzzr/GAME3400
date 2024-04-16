@@ -15,6 +15,8 @@ public class LoopEndTrigger : MonoBehaviour
     public Transform player;
     public Transform floor;
 
+    public Interactable interactable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +35,7 @@ public class LoopEndTrigger : MonoBehaviour
         {
             LoopManager.unlockSafe = true;
             FindObjectOfType<TextDisplay>().textColor = color;
-            GetComponent<Interactable>().PlayClip();
+            interactable.PlayClip();
 
             realHallway.SetActive(true);
 

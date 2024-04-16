@@ -14,6 +14,13 @@ public class PauseMenuManager : MonoBehaviour
     public Text menu;
     public Text quit;
 
+    private void Start() 
+    {
+        Screen.SetResolution(1920, 1080, true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
