@@ -42,6 +42,8 @@ public class LoopEndTrigger : MonoBehaviour
             oldCeiling.SetActive(false);
             newCeiling.SetActive(true);
 
+            StartCoroutine(FadeShader(3));
+
             foreach (GameObject deleteObject in deleteObjects)
             {
                 deleteObject.SetActive(false);
@@ -60,5 +62,19 @@ public class LoopEndTrigger : MonoBehaviour
     void EnableController()
     {
         player.gameObject.GetComponent<PlayerController>().enabled = true;
+    }
+
+    private IEnumerator FadeShader(float duration)
+    {
+        ShaderEffect_BleedingColors shader = Camera.main.GetComponent<ShaderEffect_BleedingColors>();
+
+        float elapsedTime = 0;
+        while (elapsedTime < duration)
+        {
+            shader.intensity = Mathf.Lerp(4f, 0f, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        shader.intensity = 0;
     }
 }
