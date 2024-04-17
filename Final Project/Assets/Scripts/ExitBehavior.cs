@@ -21,7 +21,7 @@ public class ExitBehavior : MonoBehaviour
 
     public void EscapeRoom()
     {
-        if (!triggered && audioSource != null && !audioSource.isPlaying && gameObject.GetComponent<AudioSource>() == null && !FindObjectOfType<TextDisplay>().isTextTyping)
+        if (!triggered)
         {
             FindObjectOfType<TextDisplay>().textColor = color;
             FindObjectOfType<TextDisplay>().DisplayText(textToDisplay);

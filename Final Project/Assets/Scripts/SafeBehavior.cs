@@ -19,7 +19,7 @@ public class SafeBehavior : MonoBehaviour
 
     public void OpenSafe()
     {
-        if (!triggered && audioSource != null && !audioSource.isPlaying && gameObject.GetComponent<AudioSource>() == null && !FindObjectOfType<TextDisplay>().isTextTyping)
+        if (!triggered)
         {
             FindObjectOfType<TextDisplay>().textColor = color;
             FindObjectOfType<TextDisplay>().DisplayText(textToDisplay);

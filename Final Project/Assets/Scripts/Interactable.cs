@@ -21,19 +21,12 @@ public class Interactable : MonoBehaviour
     {
         if (Time.time - lastPlayTime >= cooldownTime)
         {
-            if (audioSource != null && !audioSource.isPlaying && gameObject.GetComponent<AudioSource>() == null && !FindObjectOfType<TextDisplay>().isTextTyping)
+            FindObjectOfType<TextDisplay>().DisplayText(textToDisplay);
+            if (audioClip != null)
             {
-                FindObjectOfType<TextDisplay>().DisplayText(textToDisplay);
-                if (audioClip != null)
-                {
-                    StartCoroutine(PlayAfterDelay(audioSource, audioClip, 0.1f));
-                }
-                lastPlayTime = Time.time;
+                StartCoroutine(PlayAfterDelay(audioSource, audioClip, 0.1f));
             }
-        }
-        else
-        {
-            Debug.Log("Still in cooldown. Please wait.");
+            lastPlayTime = Time.time;
         }
     }
 

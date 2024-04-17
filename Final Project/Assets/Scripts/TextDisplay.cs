@@ -14,17 +14,20 @@ public class TextDisplay : MonoBehaviour
 
     private int index;
     private string[] sentences;
+    private Coroutine typingCoroutine;
 
     public void DisplayText(string[] newText)
     {
-        if (isTextTyping) return;
-
+        if (isTextTyping)
+        {
+            StopTyping();
+        }
         StopAllCoroutines();
         ResetTextAlpha();
         textComponent.text = "";
         sentences = newText;
         index = 0;
-        StartCoroutine(TypeSentence());
+        typingCoroutine = StartCoroutine(TypeSentence());
     }
 
     IEnumerator TypeSentence()
@@ -80,5 +83,16 @@ public class TextDisplay : MonoBehaviour
     {
         Color32 originalColor = textComponent.color;
         textComponent.color = new Color(textColor.r, textColor.g, textColor.b, 1f);
+    }
+
+    private void StopTyping()
+    {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+        isTextTyping = false;
+        textColor = originalColor;
     }
 }
