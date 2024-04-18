@@ -89,8 +89,8 @@ public class ExitBehavior : MonoBehaviour
 
         text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
-        SceneManager.LoadScene(0);
+        Application.Quit();
     }
 }
