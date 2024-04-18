@@ -16,18 +16,18 @@ public class DoorBehavior : MonoBehaviour
 
     private IEnumerator RotateRoutine(Quaternion targetRotation, float duration)
     {
-        Quaternion originalRotation = door.transform.rotation;
+        Quaternion originalRotation = door.transform.localRotation;
 
         audioSource.PlayOneShot(audioClip);
 
         float elapsedTime = 0;
         while (elapsedTime < duration)
         {
-            door.transform.rotation = Quaternion.Lerp(originalRotation, targetRotation, elapsedTime / duration);
+            door.transform.localRotation = Quaternion.Lerp(originalRotation, targetRotation, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        door.transform.rotation = targetRotation;
+        door.transform.localRotation = targetRotation;
     }
 
     private void OnTriggerEnter(Collider other)
