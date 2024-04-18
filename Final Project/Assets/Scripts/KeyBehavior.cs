@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KeyBehavior : MonoBehaviour
 {
+    public static bool getKey = false;
     bool triggered = false;
 
     public AudioSource audioSource;
@@ -13,6 +14,8 @@ public class KeyBehavior : MonoBehaviour
     {
         if (!triggered)
         {
+            getKey = true;
+            
             audioSource.PlayOneShot(audioClip);
 
             gameObject.GetComponent<Outline>().enabled = false;

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CameraInteractive : MonoBehaviour
 {
+    public Outline outline;
+
     public float maxDistance; // Maximum distance at which object info will be displayed
 
     // Update is called once per frame
@@ -51,7 +53,15 @@ public class CameraInteractive : MonoBehaviour
                             }
                             else if (hitObject.name == "Key")
                             {
+                                outline.OutlineWidth = 3;
                                 hitObject.GetComponent<KeyBehavior>().CollectKey();
+                            }
+                            else if (hitObject.name == "Basement")
+                            {
+                                if (KeyBehavior.getKey)
+                                {
+                                    hitObject.GetComponent<BasementEnding>().EscapeRoom();
+                                }
                             }
                             else
                             {
